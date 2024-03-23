@@ -1,15 +1,15 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {RootStackScreen} from './navigations';
-import {QueryClientProvider} from 'react-query';
-import {queryClient} from './service/queryClient';
+import {Provider} from 'react-redux';
+import store from './store/store';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
         <RootStackScreen />
-      </QueryClientProvider>
+      </Provider>
     </NavigationContainer>
   );
 };

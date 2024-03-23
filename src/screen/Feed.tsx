@@ -3,7 +3,6 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {color} from '../theme';
 import {widthResponsive} from '../utils';
 import {EmptyState, TopNavigation} from '../components';
-import {getList} from '../hooks/use-storage.hook';
 import ListDataCard from '../components/molecule/ListData';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -23,7 +22,7 @@ const FeedScreen = () => {
 
   useFocusEffect(
     useCallback(() => {
-      setData(getList());
+      // setData(getList());
     }, []),
   );
 
@@ -37,30 +36,7 @@ const FeedScreen = () => {
         title="Favorites"
         itemStrokeColor={color.Neutral[10]}
       />
-      <View style={styles.bodyContainer}>
-        {data && (
-          <FlatList
-            data={data}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.listContainer}
-            numColumns={2}
-            keyExtractor={(_, index) => index.toString()}
-            renderItem={({item}) => (
-              <ListDataCard
-                name={item.name}
-                imageUrl={item.imageUrl}
-                onPress={() => handleOnPress(item.id)}
-              />
-            )}
-            ListEmptyComponent={
-              <EmptyState
-                text="No Favorites data"
-                subtitle="Try to add favorites from detail"
-              />
-            }
-          />
-        )}
-      </View>
+      <View style={styles.bodyContainer}></View>
     </View>
   );
 };

@@ -1135,6 +1135,10 @@ PODS:
     - React-Core
     - SDWebImage (~> 5.11.1)
     - SDWebImageWebPCoder (~> 0.8.4)
+  - RNScreens (3.29.0):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
   - RNSVG (14.1.0):
     - React-Core
   - SDWebImage (5.11.1):
@@ -1223,6 +1227,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeGetLocation (from `../node_modules/react-native-get-location`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
+  - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -1350,6 +1355,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-get-location"
   RNFastImage:
     :path: "../node_modules/react-native-fast-image"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   Yoga:
@@ -1421,6 +1428,7 @@ SPEC CHECKSUMS:
   ReactCommon: 2aa35648354bd4c4665b9a5084a7d37097b89c10
   ReactNativeGetLocation: b4379a01dff72507d9abce5f4d569b98abef7761
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
+  RNScreens: 17e2f657f1b09a71ec3c821368a04acbb7ebcb46
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d

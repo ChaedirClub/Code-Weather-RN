@@ -1,99 +1,34 @@
-import {FlatList, RefreshControl, StyleSheet, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
+import React, {useCallback} from 'react';
 import {color} from '../theme';
+import {LoadingIndicator} from '../components';
+import {useDispatch, useSelector} from 'react-redux';
+import {ApplicationState} from '../store/reducers';
+import {getCurrentLocation} from '../utils/getLocation';
+import {useFocusEffect} from '@react-navigation/native';
 import {widthResponsive} from '../utils';
-import {EmptyState, LoadingIndicator, TopNavigation} from '../components';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParams} from '../navigations';
-import ListDataCard from '../components/molecule/ListData';
-import {uselistDataHook} from '../hooks/use-dataList.hook';
+import TemperatureCard from '../components/molecule/Temp';
 
 const HomeScreen = () => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParams>>();
-  const {isLoading, listData, isError, stopPagination, getlistData} =
-    uselistDataHook();
-  const [meta, setMeta] = useState<{page: number; limit: number}>({
-    page: 1,
-    limit: 15,
-  });
-  const [refreshing, setRefreshing] = useState<boolean>(false);
+  const {data, loading, error} = useSelector(
+    (state: ApplicationState) => state.home,
+  );
 
-  useEffect(() => {
-    getlistData({page: meta.page, limit: meta.limit, refresh: false});
-  }, []);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (refreshing) {
-      getlistData({page: 1, limit: meta.limit, refresh: true});
-    }
-  }, [refreshing]);
-
-  useEffect(() => {
-    if (!isLoading) {
-      setRefreshing(false);
-    }
-  }, [isLoading]);
-
-  const nextPage = () => {
-    getlistData({page: meta.page + 1, limit: meta.limit, refresh: false});
-    setMeta({
-      ...meta,
-      page: meta.page + 1,
-    });
-  };
-
-  const handleEndScroll = () => {
-    if (!stopPagination) {
-      nextPage();
-    }
-  };
-
-  const handleOnPress = (mal_id: number) => {
-    navigation.navigate('DetailData', {id: mal_id});
-  };
+  useFocusEffect(
+    useCallback(() => {
+      getCurrentLocation(dispatch);
+    }, [dispatch]),
+  );
 
   return (
-    <View style={styles.container}>
-      <TopNavigation.Type2
-        title="List Anime"
-        itemStrokeColor={color.Neutral[10]}
-      />
-      {isLoading && listData.length == 0 && <LoadingIndicator size="large" />}
+    <SafeAreaView style={styles.container}>
+      {loading && <LoadingIndicator size="large" />}
       <View style={styles.bodyContainer}>
-        {refreshing && (
-          <View style={styles.loadingContainer}>
-            <LoadingIndicator size="small" />
-          </View>
-        )}
-        {!isError ? (
-          <FlatList
-            data={listData}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.listContainer}
-            numColumns={2}
-            keyExtractor={(_, index) => index.toString()}
-            renderItem={({item, index}) => (
-              <ListDataCard
-                name={item.title}
-                imageUrl={item.images.jpg.image_url}
-                onPress={() => handleOnPress(item.mal_id)}
-              />
-            )}
-            onEndReached={handleEndScroll}
-            refreshControl={
-              <RefreshControl
-                refreshing={refreshing}
-                onRefresh={() => setRefreshing(true)}
-              />
-            }
-          />
-        ) : (
-          <EmptyState text="Error" subtitle="Oops there is something error" />
-        )}
+        {!loading && data.weather && <TemperatureCard data={data} />}
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -102,24 +37,12 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: color.Dark[800],
+    backgroundColor: color.Neutral[25],
+    padding: widthResponsive(20),
     alignItems: 'center',
     justifyContent: 'center',
   },
   bodyContainer: {
     flex: 1,
-  },
-  titleStyle: {
-    color: color.Neutral[10],
-  },
-  listContainer: {
-    marginTop: widthResponsive(20),
-  },
-  textStyle: {
-    color: color.Neutral[10],
-  },
-  loadingContainer: {
-    alignItems: 'center',
-    paddingVertical: widthResponsive(20),
   },
 });

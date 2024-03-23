@@ -71,6 +71,7 @@ const Color = {
     40: '#E0E0E0',
     35: '#E2E2E2',
     30: '#EDEDED',
+    25: '#E6E6E6',
     20: '#F5F5F5',
     10: '#FFFFFF',
   },

@@ -18,4 +18,9 @@ const elipsisText = (text: string, lengthText: number): string =>
   text?.length > lengthText ? text.substring(0, lengthText - 3) + '...' : text;
 
 
-export {normalize, elipsisText};
+const kelvinToCelcius = (kelvin:number) => {
+  return (kelvin - 273.15).toFixed(0)+'°C'
+}
+
+
+export {normalize, elipsisText,kelvinToCelcius};
