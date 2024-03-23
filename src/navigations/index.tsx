@@ -11,7 +11,7 @@ import {color, font} from '../theme';
 import {normalize} from '../utils/formatter';
 
 // Main
-import {FeedScreen, HomeScreen, AddEmployee} from '../screen';
+import {FeedScreen, HomeScreen} from '../screen';
 
 // Screen
 import {LoginScreen} from '../screen/Login';
