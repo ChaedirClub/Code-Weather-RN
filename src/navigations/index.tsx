@@ -1,28 +1,17 @@
 import React from 'react';
-import {View, TouchableOpacity, Text, StyleSheet, Platform} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
-  NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
-import {useNavigation} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {color, font} from '../theme';
+import {font} from '../theme';
 import {normalize} from '../utils/formatter';
 
 // Main
-import {FeedScreen, HomeScreen} from '../screen';
-
-// Screen
-import {LoginScreen} from '../screen/Login';
+import {HomeScreen} from '../screen';
 import {SplashScreen} from '../screen/SplashScreen';
-import DetailData from '../screen/DetailData';
-
-// Icon
-import {FeedIcon, HomeIcon, ProfileIcon, SearchIcon} from '../assets/icon';
 
 // interface
-
 export type RootStackParams = {
   SplashScreen: undefined;
   LoginScreen: undefined;
@@ -47,9 +36,7 @@ export const RootStackScreen = () => (
     screenOptions={screenOption}
     initialRouteName={'SplashScreen'}>
     <RootStack.Screen name="MainTab" component={HomeScreen} />
-    <RootStack.Screen name="LoginScreen" component={LoginScreen} />
     <RootStack.Screen name="SplashScreen" component={SplashScreen} />
-    <RootStack.Screen name="DetailData" component={DetailData} />
   </RootStack.Navigator>
 );
 
