@@ -1,7 +1,7 @@
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import React, {useCallback} from 'react';
 import {color} from '../theme';
-import {LoadingIndicator} from '../components';
+import {DetailCard, Gap, LoadingIndicator} from '../components';
 import {useDispatch, useSelector} from 'react-redux';
 import {ApplicationState} from '../store/reducers';
 import {getCurrentLocation} from '../utils/getLocation';
@@ -26,7 +26,18 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.container}>
       {loading && <LoadingIndicator size="large" />}
       <View style={styles.bodyContainer}>
-        {!loading && data.weather && <TemperatureCard data={data} />}
+        {!loading && data.weather && (
+          <>
+            <TemperatureCard data={data} />
+            <Gap height={30} />
+            <DetailCard
+              humidity={data.main.humidity}
+              pressure={data.main.pressure}
+              visibility={data.visibility}
+              windSpeed={data.wind.speed}
+            />
+          </>
+        )}
       </View>
     </SafeAreaView>
   );
@@ -37,12 +48,10 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: color.Neutral[25],
-    padding: widthResponsive(20),
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: color.Neutral[10],
   },
   bodyContainer: {
     flex: 1,
+    padding: widthResponsive(20),
   },
 });

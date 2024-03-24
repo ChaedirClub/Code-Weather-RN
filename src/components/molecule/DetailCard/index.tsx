@@ -1,28 +1,32 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {widthResponsive} from '../../../utils';
-import {color} from '../../../theme';
+import {meterToKilo, widthResponsive} from '../../../utils';
+import {color, font} from '../../../theme';
 import {mvs} from 'react-native-size-matters';
 import {Gap} from '../..';
 
 type Props = {
-  title: string;
-  value: string;
+  windSpeed: number;
+  pressure: number;
+  humidity: number;
+  visibility: number;
 };
 
 const DetailCard: React.FC<Props> = (props: Props) => {
-  const {title, value} = props;
+  const {windSpeed, pressure, humidity, visibility} = props;
   return (
     <View style={styles.root}>
-      <View style={styles.textContainer}>
-        <Text style={styles.textStyle} numberOfLines={1}>
-          {title}
-        </Text>
+      <View>
+        <Text style={styles.textStyle}>Wind: {windSpeed}m/s</Text>
+        <Gap height={10} />
+        <Text style={styles.textStyle}>Pressure: {pressure}hPa</Text>
       </View>
-      <View style={styles.valueStyle}>
-        <Text style={styles.textStyle}>:</Text>
-        <Gap width={8} />
-        <Text style={styles.textStyle}>{value}</Text>
+      <View style={styles.rightComp}>
+        <Text style={styles.textStyle}>Humidity: {humidity}%</Text>
+        <Gap height={10} />
+        <Text style={styles.textStyle}>
+          Visibility: {meterToKilo(visibility)}
+        </Text>
       </View>
     </View>
   );
@@ -33,16 +37,19 @@ export default DetailCard;
 const styles = StyleSheet.create({
   root: {
     flexDirection: 'row',
-    marginBottom: widthResponsive(10),
-  },
-  textContainer: {
-    width: widthResponsive(90),
+    width: '100%',
+    padding: widthResponsive(20),
+    backgroundColor: color.Neutral[30],
+    justifyContent: 'space-between',
+    borderRadius: 8,
   },
   textStyle: {
-    color: color.Neutral[10],
-    fontSize: mvs(14),
+    fontWeight: 'bold',
+    fontSize: mvs(12),
+    fontFamily: font.InterMedium,
+    color: color.Dark[800],
   },
-  valueStyle: {
-    flexDirection: 'row',
+  rightComp: {
+    alignItems: 'flex-end',
   },
 });

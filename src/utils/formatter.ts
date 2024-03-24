@@ -22,5 +22,10 @@ const kelvinToCelcius = (kelvin:number) => {
   return (kelvin - 273.15).toFixed(0)+'°C'
 }
 
+const meterToKilo = (meter:number) => {
+  const kilometers = meter / 1000;
+  return kilometers.toFixed(1) + 'km'
+}
 
-export {normalize, elipsisText,kelvinToCelcius};
+
+export {normalize, elipsisText,kelvinToCelcius,meterToKilo};

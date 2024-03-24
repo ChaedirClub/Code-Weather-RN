@@ -73,6 +73,7 @@ const Color = {
     30: '#EDEDED',
     25: '#E6E6E6',
     20: '#F5F5F5',
+    15: '#F2F2F2',
     10: '#FFFFFF',
   },
   Dark: {
