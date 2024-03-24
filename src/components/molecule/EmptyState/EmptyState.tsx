@@ -28,19 +28,18 @@ export const EmptyState: React.FC<Props> = (props: Props) => {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    maxWidth: '90%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
-    color: Color.Neutral[10],
+    color: Color.Dark[800],
     textAlign: 'center',
     maxWidth: '90%',
     fontSize: mvs(15),
     fontFamily: 'Inter-Medium',
   },
   subtitle: {
-    color: Color.Neutral[10],
+    color: Color.Dark[800],
     maxWidth: '90%',
     textAlign: 'center',
     paddingTop: widthResponsive(4),

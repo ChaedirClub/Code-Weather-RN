@@ -15,21 +15,37 @@ interface SearchProps extends TextInputProps {
   rightIcon?: boolean;
   reset?: () => void;
   containerStyle?: ViewStyle;
+  inputStyle?: any;
+  onEndEditing?: () => void;
+  onSubmitEditing?: () => void;
 }
 
 const SearchBar: React.FC<SearchProps> = props => {
-  const {onChangeText, value, rightIcon, reset, containerStyle} = props;
+  const {
+    onChangeText,
+    value,
+    rightIcon,
+    reset,
+    backgroundColor,
+    containerStyle,
+    inputStyle,
+    onEndEditing,
+    onSubmitEditing,
+  } = props;
   return (
-    <View style={[styles.container, containerStyle]}>
+    <View style={[styles.container]}>
       <InputText
         value={value}
         onChangeText={onChangeText}
         placeholder={''}
         leftIcon={<SearchIcon stroke={color.Dark[50]} />}
-        backgroundColor={color.Dark[600]}
+        backgroundColor={backgroundColor ?? color.Dark[600]}
         rightIcon={rightIcon}
         reset={reset}
-        {...props}
+        inputStyles={inputStyle}
+        containerStyles={containerStyle}
+        onEndEditing={onEndEditing}
+        onSubmitEditing={onSubmitEditing}
       />
     </View>
   );

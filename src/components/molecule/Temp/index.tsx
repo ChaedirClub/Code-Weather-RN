@@ -6,6 +6,7 @@ import {dataList} from '../../../interface/dataList.interface';
 import {kelvinToCelcius} from '../../../utils';
 import {color, font} from '../../../theme';
 import {mvs} from 'react-native-size-matters';
+import {Gap} from '../..';
 
 interface Props {
   data: dataList;
@@ -34,6 +35,8 @@ const TemperatureCard: FC<Props> = (props: Props) => {
         <Text style={styles.textStyle}>
           Feels like {kelvinToCelcius(data.main.feels_like)}
         </Text>
+        <Gap height={20} />
+        <Text style={styles.countryName}>{data.name}</Text>
       </View>
     </View>
   );
@@ -70,5 +73,11 @@ const styles = StyleSheet.create({
   },
   tempContainer: {
     alignItems: 'center',
+  },
+  countryName: {
+    color: color.Dark[900],
+    fontSize: mvs(20),
+    fontFamily: font.InterThin,
+    fontWeight: '100',
   },
 });

@@ -1,6 +1,5 @@
 import GetLocation from "react-native-get-location";
 import { fetchDataRequest } from "../store/actions/home";
-import { useDispatch } from "react-redux";
 import { Dispatch, UnknownAction } from "redux";
 
 export const getCurrentLocation = async (dispatch:Dispatch<UnknownAction>): Promise<void> => {
@@ -16,3 +15,4 @@ export const getCurrentLocation = async (dispatch:Dispatch<UnknownAction>): Prom
         console.warn(error.code, error.message);
       });
 };
+

@@ -1,9 +1,9 @@
 import { dataList } from "../../interface/dataList.interface";
-import { FETCH_DATA_FAILURE, FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, HomeActionTypes } from "../../interface/redux.interface";
+import { FETCH_DATA_FAILURE, FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, HomeActionTypes } from "../../interface/reduxHome.interface";
 
-export const fetchDataRequest = (lat: number, lon: number): HomeActionTypes => ({
+export const fetchDataRequest = (lat: number, lon: number, location: string): HomeActionTypes => ({
   type: FETCH_DATA_REQUEST,
-  payload: {lat, lon}
+  payload: {lat, lon,location}
 });
 
 export const fetchDataSuccess = (data: dataList): HomeActionTypes => ({

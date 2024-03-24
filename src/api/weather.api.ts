@@ -9,11 +9,12 @@ const axiosInstance = axios.create({
   headers: { 'Content-Type': 'application/json' }
 });
 
-export const fetchWeatherData = async (lat:number, lon:number) => {
+export const fetchWeatherData = async (lat?:number, lon?:number, location?: string) => {
   const response = await axiosInstance.get(`weather`, {
     params: {
       lat,
       lon,
+      q: location,
       appid: OPEN_WEATHER_MAP_API_KEY
     }
   });

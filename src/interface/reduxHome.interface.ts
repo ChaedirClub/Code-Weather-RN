@@ -11,6 +11,7 @@ export interface FetchDataRequestAction {
   payload: {
     lat: number;
     lon: number;
+    location: string;
   };
 }
 
